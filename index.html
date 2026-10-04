@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Science Companion</title>
+<style>
+  :root {
+    --bg: #faf7f2;
+    --card: #ffffff;
+    --ink: #2f2a24;
+    --muted: #6b6358;
+    --line: #e7e0d5;
+    --accent: #c56a3a;
+    --accent-soft: #f3e4d8;
+    --green: #3f8f5a;
+    --yellow: #c99a1e;
+    --red: #c0453b;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    font-size: 17px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 20px 18px 56px; }
+  header.app {
+    padding: 26px 0 18px;
+    border-bottom: 2px solid var(--accent-soft);
+    margin-bottom: 22px;
+  }
+  header.app h1 {
+    margin: 0 0 6px;
+    font-size: 30px;
+    letter-spacing: -0.4px;
+  }
+  header.app .tagline {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  section { margin: 28px 0; }
+  h2 {
+    font-size: 21px;
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  h2 .dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--accent); flex: none;
+  }
+  .lead { color: var(--muted); margin: 0 0 14px; font-size: 15px; }
+
+  details {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  details summary {
+    cursor: pointer;
+    padding: 14px 16px;
+    font-weight: 600;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after {
+    content: "+";
+    color: var(--accent);
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  details[open] summary::after { content: "\2212"; }
+  details .body { padding: 0 16px 14px; }
+  details ul { margin: 4px 0 0; padding-left: 20px; }
+  details li { margin: 7px 0; }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 15px 16px;
+    margin: 11px 0;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--ink); font-size: 15.5px; }
+  .card .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 7px;
+  }
+
+  .links { list-style: none; padding: 0; margin: 0; }
+  .links li { margin: 9px 0; }
+  .links a {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 13px 15px;
+    text-decoration: none;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .links a:hover { border-color: var(--accent); }
+  .links a .sub { display: block; font-weight: 400; color: var(--muted); font-size: 13.5px; margin-top: 2px; }
+
+  .glance dl { margin: 0; }
+  .glance dt { font-weight: 700; margin-top: 12px; font-size: 15px; }
+  .glance dd { margin: 3px 0 0; color: var(--ink); font-size: 15.5px; }
+  .glance dd a { color: var(--accent); }
+  .glance ol, .glance ul { margin: 5px 0 0; padding-left: 20px; }
+  .glance li { margin: 5px 0; }
+
+  .policy { display: grid; gap: 9px; margin-top: 8px; }
+  .policy .row {
+    border-left: 5px solid var(--line);
+    padding: 9px 13px;
+    background: var(--card);
+    border-radius: 0 10px 10px 0;
+  }
+  .policy .row.green { border-left-color: var(--green); }
+  .policy .row.yellow { border-left-color: var(--yellow); }
+  .policy .row.red { border-left-color: var(--red); }
+  .policy .label { font-weight: 700; }
+  .policy .row.green .label { color: var(--green); }
+  .policy .row.yellow .label { color: var(--yellow); }
+  .policy .row.red .label { color: var(--red); }
+
+  footer.app {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="app">
+    <h1>Science Companion</h1>
+    <p class="tagline">A coaching tool to help you understand what Avi is learning &mdash; not a homework helper. It never produces answers to graded work.</p>
+  </header>
+
+  <!-- 1. Questions to ask Avi -->
+  <section>
+    <h2><span class="dot"></span>Questions to ask Avi</h2>
+    <p class="lead">Open-ended prompts to get him explaining his own thinking. Tap a group to expand.</p>
+
+    <details open>
+      <summary>Mystery substance lab (current)</summary>
+      <div class="body">
+        <ul>
+          <li>What was in your mystery sample, and how did you figure it out?</li>
+          <li>Which property gave it away &mdash; density, melting/boiling point, or a reaction?</li>
+          <li>What would you test differently with a new unknown?</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>STEMcase engineering project (Q2 big lift)</summary>
+      <div class="body">
+        <ul>
+          <li>What problem are you solving, and who has it?</li>
+          <li>What existing solution are you improving, and what&rsquo;s wrong with it?</li>
+          <li>Where are you on the project calendar vs. your plan?</li>
+          <li>What does your data say &mdash; does it support your claim?</li>
+          <li>What feedback did you get on your last stage presentation, and what are you changing?</li>
+          <li>What&rsquo;s the hardest part right now &mdash; design, testing, or the writeup?</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>Habit &amp; ownership</summary>
+      <div class="body">
+        <ul>
+          <li>Anything this week you didn&rsquo;t fully get?</li>
+          <li>Any quizzes to sign &mdash; walk me through what you got wrong and why?</li>
+          <li>When&rsquo;s your next office-hours slot?</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <!-- 2. Parent brush-up -->
+  <section>
+    <h2><span class="dot"></span>Parent brush-up</h2>
+    <p class="lead">The 10-minute version of each topic, so you can follow the conversation.</p>
+
+    <div class="card">
+      <h3>Properties of matter &amp; identifying unknowns</h3>
+      <p>Every substance has a set of measurable properties &mdash; density, melting/boiling point, solubility, reactivity. Think of them as fingerprints: match the measurements against known values to identify what something is.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Highest leverage</span>
+      <h3>Claim&ndash;Evidence&ndash;Reasoning (CER)</h3>
+      <p>Claim = the answer. Evidence = the data that supports it. Reasoning = why that data backs the claim. This is how the teacher wants thinking expressed &mdash; if Avi can do CER cleanly, most of the grade follows.</p>
+    </div>
+
+    <div class="card">
+      <h3>Engineering design cycle</h3>
+      <p>Define the problem &rarr; prototype a solution &rarr; test it &rarr; analyze the results &rarr; iterate. It&rsquo;s a loop, not a line &mdash; expect to go around more than once.</p>
+    </div>
+
+    <div class="card">
+      <h3>Physical vs. chemical change</h3>
+      <p>Physical change: phase change or dissolving &mdash; same substance, reversible (ice &harr; water). Chemical change: a new substance forms &mdash; usually not reversible (burning, rusting).</p>
+    </div>
+
+    <div class="card">
+      <h3>Forces &amp; motion (Semester 2)</h3>
+      <p>Newton&rsquo;s three laws (inertia; F = ma; equal and opposite reactions). Velocity is speed with direction; acceleration is how fast velocity changes. Balanced forces &rarr; no change in motion; unbalanced &rarr; acceleration. Kinetic energy = motion; potential energy = stored.</p>
+    </div>
+  </section>
+
+  <!-- 3. Resources -->
+  <section>
+    <h2><span class="dot"></span>Resources</h2>
+    <p class="lead">Free, trustworthy spots to brush up or to practice a concept together.</p>
+    <ul class="links">
+      <li><a href="https://www.khanacademy.org/science/ms-physics" target="_blank" rel="noopener">Khan Academy &mdash; MS Physics<span class="sub">Middle-school physics video course</span></a></li>
+      <li><a href="https://www.khanacademy.org/science/chemistry" target="_blank" rel="noopener">Khan Academy &mdash; Chemistry<span class="sub">Properties of matter, reactions, and more</span></a></li>
+      <li><a href="https://www.ck12.org/" target="_blank" rel="noopener">CK-12 &mdash; Middle School Science<span class="sub">Readings, practice, and simulations</span></a></li>
+      <li><a href="https://phet.colorado.edu/" target="_blank" rel="noopener">PhET Interactive Simulations<span class="sub">Hands-on physics &amp; chemistry sims</span></a></li>
+    </ul>
+  </section>
+
+  <!-- 4. Course at a glance -->
+  <section class="glance">
+    <h2><span class="dot"></span>Course at a glance</h2>
+    <p class="lead">Bush School &mdash; 8th Grade Science, 2026&ndash;27.</p>
+
+    <div class="card">
+      <dl>
+        <dt>Teacher</dt>
+        <dd>Lucy Alexander &mdash; <a href="mailto:lucy.alexander@bush.edu">lucy.alexander@bush.edu</a></dd>
+
+        <dt>Canvas course</dt>
+        <dd>&ldquo;Science 8&rdquo;</dd>
+
+        <dt>Four essential questions (course strands)</dt>
+        <dd>
+          <ul>
+            <li>Chemistry</li>
+            <li>Engineering Design</li>
+            <li>Physics</li>
+            <li>Science Community</li>
+          </ul>
+        </dd>
+
+        <dt>Retake policy</dt>
+        <dd>A Beginning (1) or Approaching (2) on a standard can be redone within 2 weeks: meet with Lucy, do corrections plus a reflection, and complete a practice quiz.</dd>
+
+        <dt>Office hours</dt>
+        <dd>
+          <ul>
+            <li>Daily 8:00&ndash;8:15am &amp; 3:30&ndash;4:00pm</li>
+            <li>Tuesdays 11:45&ndash;12:15</li>
+            <li>Thursdays 9:30&ndash;10:30</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <div class="card">
+      <h3>AI policy &mdash; Green / Yellow / Red</h3>
+      <p class="lead" style="margin-bottom:6px;">Every assignment is labeled. The label tells you how much AI help is allowed.</p>
+      <div class="policy">
+        <div class="row green"><span class="label">Green</span> &mdash; AI is allowed. Use it to explore, brainstorm, and check understanding.</div>
+        <div class="row yellow"><span class="label">Yellow</span> &mdash; Limited/specific AI use only, as the assignment directs. Read the instructions.</div>
+        <div class="row red"><span class="label">Red</span> &mdash; No AI. The work must be entirely Avi&rsquo;s own. This tool is for understanding, never for answering Red work.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="app">
+    Built as a coaching aid. For Red assignments, no AI &mdash; this tool is for understanding, not answers.
+  </footer>
+
+</div>
+</body>
+</html>
